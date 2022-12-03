@@ -1,0 +1,44 @@
+<SejongOverflow DATABASE>
+
+CREATE DATABASE IF NOT EXISTS SejongOverflow;
+USE SejongOverflow;
+CREATE TABLE IF NOT EXISTS board(boardID INT, boardName varchar(50), boardURL varchar(50), boardAvailable INT, boardLevel INT);
+CREATE TABLE IF NOT EXISTS post(postID INT, boardID INT, userID varchar(50), postDate DATETIME, postTitle varchar(100), postContent longtext, postDivide varchar(50), postFile varchar(50), postRealFile varchar(50), agreeCount INT, postHit INT, postGroup INT, postSequence INT , postLevel INT, postAvailable INT, postCode longtext);
+CREATE TABLE IF NOT EXISTS report(reportID INT , userID varchar(50) , reportTitle varchar(50) , reportContent varchar(50) , reportDate varchar(50) , reportLink varchar(50) , cmpI INT , postID INT, isStudent INT, boardID INT, processingStatus INT);
+CREATE TABLE IF NOT EXISTS user(userID varchar(50) PRIMARY KEY, userPassword varchar(50), userName varchar(50), userEmail varchar(50), userEmailHash varchar(200), userEmailChecked varchar(50), userProfile varchar(50), findPwQuestion varchar(50), findPwAnswer varchar(50), aboutMe varchar(50));
+CREATE TABLE IF NOT EXISTS likey(userID varchar(50), postID INT, boardID INT, userIP INT);
+CREATE TABLE IF NOT EXISTS page(pageLogo varchar(50), pageImage varchar(50));
+
+INSERT INTO board VALUES(1, '공지사항', 'post.jsp?boardID=1', 1, 2);
+INSERT INTO board VALUES(2, '코딩 F&A', 'post.jsp?boardID=2', 1, 1);
+INSERT INTO board VALUES(3, '코딩 Q&A', 'post.jsp?boardID=3', 1, 1);
+INSERT INTO board VALUES(4, '채용 정보', 'post.jsp?boardID=4', 1, 1);
+INSERT INTO board VALUES(5, '졸업생에게 묻는다', 'post.jsp?boardID=5', 1, 1);
+INSERT INTO board VALUES(6, '취창업 후기', 'post.jsp?boardID=6', 1, 1);
+INSERT INTO board VALUES(7, '팀원 모집', 'post.jsp?boardID=7', 1, 1);
+INSERT INTO board VALUES(8, '교내 공모전 & 대회', 'post.jsp?boardID=8', 1, 1);
+INSERT INTO board VALUES(9, '교외 공모전 & 대회', 'post.jsp?boardID=9', 1, 1);
+INSERT INTO board VALUES(10, '자유 게시판', 'post.jsp?boardID=10', 1, 1);
+INSERT INTO user VALUES('admin', 'admin123', 'admin', 'abc@sju.ac.kr', 'emailhash', 2, ' ', ' ', ' ', '나를 소개합니다.');
+
+
+<FILE DATABASE>
+CREATE DATABASE IF NOT EXISTS file;
+USE file;
+CREATE TABLE IF NOT EXISTS file(fileName varchar(50), fileRealName varchar(50), downloadCount INT);
+
+agree(String userID, INT cmpID, INT isStudent, String userIP)
+board(INT boardID, String boardName, String boardURL, INT boardAvailable, INT boardLevel)
+cmp(INT cmpID, String userID, String cmpDate, String cmpTitle, String cmpContent, String cmpDivide, String cmpFile, String cmpReadFile, INT agreeCount, INT cmpHit, INT cmpGroup, INT cmpSequence, INT cmpLevel, INT cmpAvailable, INT isStudent)
+post(INT postID, INT boardID, String userID, String postDate, String postTitle, String postContent, String postDivide, String postFile, String postRealFile, INT agreeCount, INT postHit, INT postGroup, INT postSequence, INT agreeCount, INT postHit, INT postGroup, INT postSequence, INT postLevel, INT postAvailable)
+report(INT reportID, String userID, String reportTitle, String reportContent, String reportDate, String reportLink, INT cmpID, INT postID, INT isStudent, INT boardID, INT processingStatus)
+user(String userID, String userPassword, String userName, String userEmail, String userEmailHash, String userEmailChecked, String userProfile, String findPwQuestion, String findPwAnswer, String aboutMe)
+gallery(INT galID, String GalTitle, String userID, String galDate, String galContent, String galFile, String galRealFile, INT galHit, INT galAvailable)
+likey(String userID, INT postID, INT boardID, userIP)
+page(String pageLogo, String pageImage)
+
+File DATABASE
+file(String fileName, String fileRealName, INT downloadCount)
+
+INSERT INTO user VALUES('admin', '1234', 'admin', 'sseunghun99@naver.com',
+
